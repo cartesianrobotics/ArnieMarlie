@@ -529,14 +529,18 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80, 500 }
+// Modified by Sergii for testing full stepping 12/22/2019
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 80, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 20, 20, 25, 500 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 10000, 10000, 10000, 25 }
+// Modified by Sergii for testing full stepping 12/22/2019
+//#define DEFAULT_MAX_FEEDRATE          { 10000, 10000, 10000, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 2000, 2000, 4000, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -544,7 +548,8 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 10000, 10000, 10000, 10000 }
+// Modified by Sergii for testing full stepping 12/22/2019
+#define DEFAULT_MAX_ACCELERATION      { 10000, 10000, 1000, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -566,9 +571,9 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define DEFAULT_XJERK                 10.0
-#define DEFAULT_YJERK                 10.0
-#define DEFAULT_ZJERK                 10.0
+#define DEFAULT_XJERK                 2.0
+#define DEFAULT_YJERK                 2.0
+#define DEFAULT_ZJERK                 2.0
 #define DEFAULT_EJERK                  5.0
 
 //===========================================================================
@@ -715,8 +720,8 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
+#define Z_CLEARANCE_DEPLOY_PROBE   0 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_BETWEEN_PROBES  0 // Z Clearance between probe points
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -730,7 +735,7 @@
 #define X_ENABLE_ON 0
 #define Y_ENABLE_ON 0
 #define Z_ENABLE_ON 0
-#define E_ENABLE_ON 0 // For all extruders
+#define E_ENABLE_ON 0 // For all extrudeFrs
 
 // Disables axis stepper immediately when it's not being used.
 // WARNING: When motors turn off there is a chance of losing position accuracy!
@@ -1039,9 +1044,10 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (12000)
-#define HOMING_FEEDRATE_Z  (12000)
-
+// #define HOMING_FEEDRATE_XY (12000)// for microstepping 
+#define HOMING_FEEDRATE_XY (4000)
+//#define HOMING_FEEDRATE_Z  (12000) // for microstepping 
+#define HOMING_FEEDRATE_Z  (2000)
 // @section calibrate
 
 /**
